@@ -1,0 +1,39 @@
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:1
+load:0x3fff0030,len:4744
+load:0x40078000,len:15672
+load:0x40080400,len:3164
+entry 0x4008059c
+E (15188) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:
+E (15188) task_wdt:  - loopTask (CPU 1)
+E (15188) task_wdt: Tasks currently running:
+E (15188) task_wdt: CPU 0: IDLE0
+E (15188) task_wdt: CPU 1: IDLE1
+E (15188) task_wdt: Aborting.
+E (15188) task_wdt: Print CPU 1 backtrace
+
+
+
+
+Backtrace: 0x4008958b:0x3ffc98a0 0x401711d9:0x3ffc98c0 0x4008ca57:0x3ffc98e0 0x4008ba8d:0x3ffc9900
+
+
+
+
+ELF file SHA256: a68424249
+
+Rebooting...
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:1
+load:0x3fff0030,len:4744
+load:0x40078000,len:15672
+load:0x40080400,len:3164
+entry 0x4008059c

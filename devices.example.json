@@ -1,0 +1,4 @@
+{
+  "bedroom-side-blinds": {"board": "xiao-c6", "deployment": "existing pilot; migration pending"},
+  "huzzah32-test": {"board": "huzzah32", "deployment": "bench qualification pending"}
+}

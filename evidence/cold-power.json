@@ -1,0 +1,12 @@
+{
+  "checked_at_utc": "2026-10-25T19:22:56.978923+00:00",
+  "owner_confirmed_full_power_disconnect_and_reconnection": true,
+  "authenticated_status_after_reconnection": {
+    "role": "main_selftest",
+    "no_actuators": true,
+    "boot_partition": "rescue",
+    "heap": 201444
+  },
+  "software_launch_command_sent_after_reconnection": false,
+  "automatic_main_start_passed": true
+}

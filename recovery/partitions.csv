@@ -1,0 +1,9 @@
+# Initial USB migration only; never update this table during ordinary OTA.
+# Name,Type,SubType,Offset,Size,Flags
+nvs,data,nvs,0x9000,0x5000,
+otadata,data,ota,0xe000,0x2000,
+rescue,app,factory,0x10000,0x100000,
+main,app,ota_0,0x110000,0x2c0000,
+update_state,data,0x40,0x3d0000,0x2000,
+recovery_cfg,data,nvs,0x3e0000,0x10000,
+coredump,data,coredump,0x3f0000,0x10000,

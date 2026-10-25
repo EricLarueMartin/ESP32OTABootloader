@@ -1,0 +1,6 @@
+* text=auto eol=lf
+# Preserve the qualified source-byte hashes on every checkout.
+*.h text eol=crlf
+*.ino text eol=crlf
+*.cpp text eol=crlf
+*.csv text eol=crlf

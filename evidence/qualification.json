@@ -1,0 +1,153 @@
+{
+  "date": "2026-10-25",
+  "hardware_qualified": true,
+  "pending": [],
+  "tested_board": "Adafruit Feather HUZZAH32, ESP32-D0WD-V3 rev3.0, 4 MiB",
+  "builds": {
+    "huzzah32/recovery": {
+      "image_bytes": 950912,
+      "image_sha256": "07facd934fdbb75ceb8e50699a5817f574faab133cd0908fa24de7598a5a085f",
+      "sources": {
+        "arduino_startup.h": "192517feb31b09fba27e7cc00dcf54cc21b1ffe4050e090c3ebc225641a315a5",
+        "authentication.h": "2b1266436bb667568e74fd7f3c1327f64b34e8ba2370fa699fa42c0128ad54ce",
+        "http_range.h": "c97450a24c490c12d54ac7b476b948328dfe164b604daa0dc900821791627e15",
+        "identity.h": "e43d8fd7ea627a78448dbf1a41ec7102e0fac08fad499390211e3e66970dbf92",
+        "partitions.csv": "149cd60851da506b2d99cf6a2a8f44cca0578a337a856545cce1bb06f3b5eb9f",
+        "readback.h": "861dab3b389163d2a25a97d3e5417d10c8f238ca2bda9a946e32b01860872442",
+        "recovery.ino": "607ec63bf42dfba094c5e5716ea77dcd6be9166a06e21d6a5a86637be0e4e8e0",
+        "update_state.h": "d33c4a928a2325b26a3b20981537a50d7d98b8f5f0aedebe74d0148ec098db2d"
+      }
+    },
+    "huzzah32/selftest": {
+      "image_bytes": 922704,
+      "image_sha256": "2c75d1c731c2452f8e48f731bb3a0c837c1e697f696de470d1f72590ce499ab4",
+      "sources": {
+        "application_entry.h": "f0edfaf617047a36cb0f1664e4a69995c58b6b7d4b3a3d455aca348d201f7600",
+        "arduino_startup.h": "192517feb31b09fba27e7cc00dcf54cc21b1ffe4050e090c3ebc225641a315a5",
+        "authentication.h": "2b1266436bb667568e74fd7f3c1327f64b34e8ba2370fa699fa42c0128ad54ce",
+        "identity.h": "e43d8fd7ea627a78448dbf1a41ec7102e0fac08fad499390211e3e66970dbf92",
+        "partitions.csv": "149cd60851da506b2d99cf6a2a8f44cca0578a337a856545cce1bb06f3b5eb9f",
+        "selftest.ino": "8b3490e69cdae1484213ac3032a5dfa3d25a0535b4d3d5171ed0e0bab914620a",
+        "update_state.h": "d33c4a928a2325b26a3b20981537a50d7d98b8f5f0aedebe74d0148ec098db2d"
+      }
+    },
+    "huzzah32/badboot": {
+      "image_bytes": 922736,
+      "image_sha256": "fc80897ca168aefe47cca5d75afbf389b456e43ceb24bfff8d84775f425848a3",
+      "sources": {
+        "application_entry.h": "f0edfaf617047a36cb0f1664e4a69995c58b6b7d4b3a3d455aca348d201f7600",
+        "arduino_startup.h": "192517feb31b09fba27e7cc00dcf54cc21b1ffe4050e090c3ebc225641a315a5",
+        "authentication.h": "2b1266436bb667568e74fd7f3c1327f64b34e8ba2370fa699fa42c0128ad54ce",
+        "identity.h": "e43d8fd7ea627a78448dbf1a41ec7102e0fac08fad499390211e3e66970dbf92",
+        "partitions.csv": "149cd60851da506b2d99cf6a2a8f44cca0578a337a856545cce1bb06f3b5eb9f",
+        "selftest.ino": "8b3490e69cdae1484213ac3032a5dfa3d25a0535b4d3d5171ed0e0bab914620a",
+        "update_state.h": "d33c4a928a2325b26a3b20981537a50d7d98b8f5f0aedebe74d0148ec098db2d"
+      }
+    },
+    "huzzah32/badloop": {
+      "image_bytes": 922704,
+      "image_sha256": "a0b8b3d3c05048b7658da5e7071c2fdc4c5690c8b4dd5e2b48f5383faa861063",
+      "sources": {
+        "application_entry.h": "f0edfaf617047a36cb0f1664e4a69995c58b6b7d4b3a3d455aca348d201f7600",
+        "arduino_startup.h": "192517feb31b09fba27e7cc00dcf54cc21b1ffe4050e090c3ebc225641a315a5",
+        "authentication.h": "2b1266436bb667568e74fd7f3c1327f64b34e8ba2370fa699fa42c0128ad54ce",
+        "identity.h": "e43d8fd7ea627a78448dbf1a41ec7102e0fac08fad499390211e3e66970dbf92",
+        "partitions.csv": "149cd60851da506b2d99cf6a2a8f44cca0578a337a856545cce1bb06f3b5eb9f",
+        "selftest.ino": "8b3490e69cdae1484213ac3032a5dfa3d25a0535b4d3d5171ed0e0bab914620a",
+        "update_state.h": "d33c4a928a2325b26a3b20981537a50d7d98b8f5f0aedebe74d0148ec098db2d"
+      }
+    },
+    "xiao-c6/recovery": {
+      "image_bytes": 1010288,
+      "image_sha256": "3c344f0d87fcfef9ec0b956b069cd3f92116aa97187c896d56f59e43dd3574a4",
+      "sources": {
+        "arduino_startup.h": "192517feb31b09fba27e7cc00dcf54cc21b1ffe4050e090c3ebc225641a315a5",
+        "authentication.h": "2b1266436bb667568e74fd7f3c1327f64b34e8ba2370fa699fa42c0128ad54ce",
+        "http_range.h": "c97450a24c490c12d54ac7b476b948328dfe164b604daa0dc900821791627e15",
+        "identity.h": "e43d8fd7ea627a78448dbf1a41ec7102e0fac08fad499390211e3e66970dbf92",
+        "partitions.csv": "149cd60851da506b2d99cf6a2a8f44cca0578a337a856545cce1bb06f3b5eb9f",
+        "readback.h": "861dab3b389163d2a25a97d3e5417d10c8f238ca2bda9a946e32b01860872442",
+        "recovery.ino": "607ec63bf42dfba094c5e5716ea77dcd6be9166a06e21d6a5a86637be0e4e8e0",
+        "update_state.h": "d33c4a928a2325b26a3b20981537a50d7d98b8f5f0aedebe74d0148ec098db2d"
+      }
+    }
+  },
+  "passed": {
+    "native_checks": 10054,
+    "python_tests": 5,
+    "wrong_password_rejected": true,
+    "interrupted_download_restart_checkpoint": 16384,
+    "resume_first_range": "bytes=16384-20479",
+    "full_image_sha_verified": true,
+    "release_metadata_preserved": true,
+    "corrupt_image_rejected": true,
+    "corrupt_launch_http_status": 409,
+    "authenticated_software_return": true,
+    "early_crash_return_with_uart_evidence": true,
+    "watchdog_return_with_uart_evidence": true,
+    "recovery_stable_after_faults": true,
+    "good_test_app_restored": true,
+    "owner_confirmed_cold_power_and_automatic_main_start": true
+  },
+  "flash_readback": {
+    "bootloader": {
+      "matches": true,
+      "bytes": 23664,
+      "sha256": "fe0c72f49a18c430e314871a0f4f91fa4418364e5868cbf743c32822202f10e7"
+    },
+    "partitions": {
+      "matches": true,
+      "bytes": 3072,
+      "sha256": "c87b673586c8413af00ef03d1a04491dc39de36f9cafc75cc7754226dc3c9408"
+    },
+    "recovery": {
+      "matches": true,
+      "bytes": 950912,
+      "sha256": "07facd934fdbb75ceb8e50699a5817f574faab133cd0908fa24de7598a5a085f"
+    },
+    "main": {
+      "matches": true,
+      "bytes": 922704,
+      "sha256": "2c75d1c731c2452f8e48f731bb3a0c837c1e697f696de470d1f72590ce499ab4"
+    },
+    "default_nvs_raw_equal": false
+  },
+  "nvs": {
+    "page_item_payload_crcs_valid": true,
+    "unchanged_logical_records": 31,
+    "changed_logical_keys": [
+      [
+        "phy",
+        "cal_data"
+      ],
+      [
+        "phy",
+        "cal_version"
+      ],
+      [
+        "nvs.net80211",
+        "sta.ssid"
+      ]
+    ],
+    "recovery_password_hash_preserved": true,
+    "netid_preserved": true,
+    "plaintext_device_password_absent_from_configuration": true,
+    "raw_default_nvs_equal": false
+  },
+  "development_failures_retained": [
+    {
+      "reason": "source connection failures",
+      "checkpoints": [
+        163840,
+        286720
+      ],
+      "recovery_available": true
+    },
+    {
+      "reason": "incomplete/invalid transport response",
+      "checkpoint": 835584,
+      "recovery_available": true
+    }
+  ],
+  "scope": "Physical qualification applies to the HUZZAH32 bench profile only. C6 compile check only; installed blind pilot untouched."
+}
