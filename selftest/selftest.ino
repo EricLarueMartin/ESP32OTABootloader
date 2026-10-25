@@ -9,6 +9,7 @@
 #include "application_entry.h"
 #include "authentication.h"
 #include "identity.h"
+#include "update_page.h"
 #ifdef SELFTEST_FAIL_EARLY
 __attribute__((constructor)) static void failBeforeApplicationEntry() { esp_restart(); }
 #endif
@@ -60,6 +61,9 @@ void setup() {
     api.send(200, "text/plain", "software_restart_to_recovery");
     restartAt = millis() + 300;
   });
+  registerUpdatePage(api);
+  api.on("/", HTTP_GET,
+         [] { api.send(200, "text/html", "<a href='/update'>Firmware update</a>"); });
   api.begin();
   configured = true;
 }

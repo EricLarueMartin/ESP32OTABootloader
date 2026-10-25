@@ -15,5 +15,5 @@ for i,(name,start,size) in enumerate(parts):
  assert start%4096==0 and size%4096==0 and start+size<=0x400000
  assert all(start+size<=s or s+n<=start for _,s,n in parts[:i])
 assert dict((name,(start,size)) for name,start,size in parts)['nvs']==(0x9000,0x5000)
-result={'checks':r.stdout.decode().strip(),'partition_bounds_and_no_overlap':True,'existing_nvs_preserved':True,'hardware_qualified':False,'source_sha256':{x:hashlib.sha256((p/x).read_bytes()).hexdigest() for x in ['test_state.cpp','recovery/update_state.h','recovery/identity.h','recovery/readback.h','recovery/http_range.h','recovery/partitions.csv']}}
+result={'checks':r.stdout.decode().strip(),'partition_bounds_and_no_overlap':True,'existing_nvs_preserved':True,'hardware_qualified':False,'source_sha256':{x:hashlib.sha256((p/x).read_bytes()).hexdigest() for x in ['test_state.cpp','recovery/boot_window.h','recovery/update_state.h','recovery/identity.h','recovery/readback.h','recovery/http_range.h','recovery/partitions.csv']}}
 (out/'native-validation.json').write_text(json.dumps(result,indent=2)+'\n');print(result['checks']);print('Partition boundaries and existing NVS address validated')

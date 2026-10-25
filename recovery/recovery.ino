@@ -15,6 +15,8 @@
 #include "readback.h"
 #include "authentication.h"
 #include "arduino_startup.h"
+#include "boot_window.h"
+#include "update_page.h"
 using namespace recovery_v1;
 WebServer api(80);
 Preferences cfg;
@@ -25,8 +27,16 @@ bool storageOK = false, downloading = false;
 String netid, expectedAuth, url, lastError = "unconfigured", usbLine;
 bool apiStarted = false, cfgOpened = false;
 uint8_t buffer[SECTOR], verifyBuffer[256];
-uint32_t restartAt = 0, autoAt = 0, lastWifiRetry = 0, sourceRetryAt = 0, sourceRetryCount = 0;
+uint32_t restartAt = 0, lastWifiRetry = 0, sourceRetryAt = 0, sourceRetryCount = 0;
 uint8_t consecutiveSourceFailures = 0;
+recovery_boot::Window bootWindow;
+bool setBootMarker(uint8_t marker) {
+  if (cfg.putUChar("boot_window", marker) == 1 && cfg.getUChar("boot_window", 255) == marker)
+    return true;
+  bootWindow.cancel();
+  lastError = "boot_marker_write_failed";
+  return false;
+}
 struct Port {
   bool erase(int s) { return esp_partition_erase_range(statePart, s * SECTOR, SECTOR) == ESP_OK; }
   bool write(int s, const Record &r) {
@@ -397,14 +407,37 @@ void setup() {
   const char *headers[] = {"Authorization", "X-Image-SHA256", "X-Image-Size", "X-Image-Name",
                            "X-Image-Version"};
   api.collectHeaders(headers, 5);
+  registerUpdatePage(api);
+  api.on("/", HTTP_GET,
+         [] { api.send(200, "text/html", "<a href='/update'>Firmware update</a>"); });
+  api.on("/v1/maintenance", HTTP_POST, [] {
+    if (!allowed())
+      return;
+    bootWindow.cancel();
+    if (!storageOK || restartAt || !setBootMarker(0)) {
+      api.send(409, "text/plain", "busy_or_storage_invalid");
+      return;
+    }
+    if (record.phase == Healthy) {
+      Record next = record;
+      next.phase = Hold;
+      if (!save(next)) {
+        api.send(500, "text/plain", "state_write_failed");
+        return;
+      }
+    }
+    api.send(200, "text/plain", "recovery_session_open");
+  });
   api.on("/v1/status", HTTP_GET, [] {
     if (!allowed())
       return;
     api.send(200, "application/json",
              "{\"protocol\":1,\"role\":\"recovery\",\"storage_ok\":" +
-                 String(storageOK ? "true" : "false") + ",\"phase\":" + String(record.phase) +
-                 ",\"committed\":" + String(record.committed) + ",\"size\":" + String(record.size) +
-                 ",\"capacity\":" + String(mainPart->size) +
+                 String(storageOK ? "true" : "false") +
+                 ",\"boot_window_ms\":" + String(bootWindow.remaining(millis())) +
+                 ",\"boot_window_mode\":" + String(int(bootWindow.mode)) + ",\"phase\":" +
+                 String(record.phase) + ",\"committed\":" + String(record.committed) +
+                 ",\"size\":" + String(record.size) + ",\"capacity\":" + String(mainPart->size) +
                  ",\"downloading\":" + String(downloading ? "true" : "false") + ",\"result\":\"" +
                  lastError + "\",\"netid\":\"" + netid + "\",\"image_sha256\":\"" +
                  digestHex(record.sha, 32) + "\",\"source_retries\":" + String(sourceRetryCount) +
@@ -454,7 +487,7 @@ void setup() {
       api.send(500, "text/plain", "metadata_write_failed");
       return;
     }
-    autoAt = 0;
+    bootWindow.cancel();
     Record next;
     next.generation = record.generation;
     next.phase = Installing;
@@ -470,7 +503,7 @@ void setup() {
       api.send(409, "text/plain", "busy_or_storage_invalid");
       return;
     }
-    autoAt = 0;
+    bootWindow.cancel();
     Record next;
     next.generation = record.generation;
     api.send(save(next) ? 200 : 500, "text/plain",
@@ -498,7 +531,7 @@ void setup() {
       return;
     downloading = false;
     url = "";
-    autoAt = 0;
+    bootWindow.cancel();
     api.send(200, "text/plain", "restart_to_recovery");
     restartAt = millis() + 300;
   });
@@ -509,7 +542,7 @@ void setup() {
       api.send(409, "text/plain", "busy_or_incomplete");
       return;
     }
-    autoAt = 0;
+    bootWindow.cancel();
     Record next = record;
     next.phase = Hold;
     api.send(save(next) ? 200 : 500, "text/plain", storageOK ? "held_in_recovery" : "state_failed");
@@ -525,7 +558,7 @@ void setup() {
     }
     Record next = record;
     next.phase = Trial;
-    if (!save(next) || esp_ota_set_boot_partition(mainPart) != ESP_OK) {
+    if (!setBootMarker(0) || !save(next) || esp_ota_set_boot_partition(mainPart) != ESP_OK) {
       api.send(500, "text/plain", "launch_failed");
       return;
     }
@@ -535,8 +568,12 @@ void setup() {
   api.begin();
   apiStarted = true;
   lastError = storageOK ? "idle" : "state_invalid";
-  if (storageOK && record.phase == Healthy && esp_reset_reason() == ESP_RST_POWERON)
-    autoAt = millis() + 3000;
+  auto mode =
+      recovery_boot::choose(esp_reset_reason() == ESP_RST_POWERON,
+                            storageOK && record.phase == Healthy, cfg.getUChar("boot_window", 0));
+  if (mode != recovery_boot::Mode::Stay &&
+      setBootMarker(mode == recovery_boot::Mode::Gesture ? 1 : 2))
+    bootWindow.begin(mode, millis());
 }
 void loop() {
   usbService();
@@ -549,12 +586,13 @@ void loop() {
   }
   if (downloading && (!sourceRetryAt || int32_t(millis() - sourceRetryAt) >= 0))
     downloadChunk();
-  if (autoAt && int32_t(millis() - autoAt) >= 0) {
-    autoAt = 0;
+  bootWindow.network(WiFi.status() == WL_CONNECTED, millis());
+  if (bootWindow.expired(millis())) {
+    bootWindow.cancel();
     if (storageOK && record.phase == Healthy && !downloading && imageVerified()) {
       Record next = record;
       next.phase = Trial;
-      if (save(next) && esp_ota_set_boot_partition(mainPart) == ESP_OK)
+      if (setBootMarker(0) && save(next) && esp_ota_set_boot_partition(mainPart) == ESP_OK)
         restartAt = millis() + 500;
     }
   }

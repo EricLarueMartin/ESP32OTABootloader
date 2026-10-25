@@ -29,6 +29,7 @@ def main():
     for file in (P / name).glob("*"):
         if file.is_file(): shutil.copy2(file, sketch / file.name)
     shutil.copy2(P / "arduino_startup.h", sketch / "arduino_startup.h")
+    shutil.copy2(P / "update_page.h", sketch / "update_page.h")
     if name == "selftest":
         for file in ["update_state.h", "identity.h", "authentication.h"]:
             shutil.copy2(P / "recovery" / file, sketch / file)

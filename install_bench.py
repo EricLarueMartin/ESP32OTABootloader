@@ -15,7 +15,7 @@ def main():
     image=binary/"recovery.ino.bin"
     if hashlib.sha256(image.read_bytes()).hexdigest()!=receipt["image_sha256"]:raise RuntimeError("Image receipt mismatch")
     for name,digest in receipt["sources"].items():
-        current=P/"arduino_startup.h" if name=="arduino_startup.h" else P/"recovery"/name
+        current=P/name if name in ("arduino_startup.h", "update_page.h") else P/"recovery"/name
         if hashlib.sha256(current.read_bytes()).hexdigest()!=digest:raise RuntimeError("Source changed: "+name)
     def run(args):
         r=subprocess.run([str(a.esptool),"--chip","esp32","--port",a.port]+args,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)

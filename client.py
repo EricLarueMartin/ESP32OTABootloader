@@ -43,7 +43,18 @@ def image_headers(image, manifest_path=None):
  return headers
 
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--key-file',type=Path,required=True);ap.add_argument('action',choices=['status','download','launch','restart','hold','abandon']);ap.add_argument('--image',type=Path);ap.add_argument('--manifest',type=Path);ap.add_argument('--bind');ap.add_argument('--port',type=int,default=49195);a=ap.parse_args();cfg=json.loads(a.key_file.read_text())
+ ap=argparse.ArgumentParser();ap.add_argument('--key-file',type=Path);ap.add_argument('action',choices=['status','download','launch','restart','hold','abandon','recover','maintenance','serve']);ap.add_argument('--image',type=Path);ap.add_argument('--manifest',type=Path);ap.add_argument('--bind');ap.add_argument('--port',type=int,default=49195);a=ap.parse_args()
+ if a.action=='serve':
+  if not a.image or not a.bind:raise SystemExit('serve requires --image and --bind')
+  headers=image_headers(a.image,a.manifest);digest=headers['X-Image-SHA256']
+  server=http.server.ThreadingHTTPServer((a.bind,a.port),handler(a.image,digest))
+  print(f'http://{a.bind}:{a.port}/image/{digest}.bin',flush=True)
+  try:server.serve_forever()
+  except KeyboardInterrupt:pass
+  finally:server.server_close()
+  return
+ if not a.key_file:raise SystemExit('--key-file is required for device actions')
+ cfg=json.loads(a.key_file.read_text())
  if a.action=='status':print(request(cfg,'/v1/status').decode());return
  if a.action!='download':print(request(cfg,'/v1/'+a.action,b'').decode());return
  if not a.image or not a.bind:raise SystemExit('download requires exact image and local LAN bind address')

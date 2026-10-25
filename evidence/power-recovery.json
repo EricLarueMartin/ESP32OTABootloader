@@ -1,0 +1,317 @@
+{
+  "date": "2026-10-25",
+  "hardware_qualified": true,
+  "pending": [],
+  "hardware_full_15_minute_soak": false,
+  "native_checks": 10846,
+  "python_tests": 5,
+  "embedded_page_flow_tests": "passed",
+  "live_browser_empty_password": "401 unauthorized",
+  "builds": {
+    "huzzah32/recovery": {
+      "board": "huzzah32",
+      "profile": "recovery",
+      "image_bytes": 955568,
+      "image_sha256": "7f8c8a43007bb2e07d22e7de8a37b035926cd49e7c5e63636db77a6fe1196a0b",
+      "hardware_qualified": true,
+      "sources": {
+        "arduino_startup.h": "192517feb31b09fba27e7cc00dcf54cc21b1ffe4050e090c3ebc225641a315a5",
+        "authentication.h": "2b1266436bb667568e74fd7f3c1327f64b34e8ba2370fa699fa42c0128ad54ce",
+        "boot_window.h": "5e560d26e437ef64d8bd03d256370b61846b01c92d77d6ee216f1305bbe28d1d",
+        "http_range.h": "c97450a24c490c12d54ac7b476b948328dfe164b604daa0dc900821791627e15",
+        "identity.h": "e43d8fd7ea627a78448dbf1a41ec7102e0fac08fad499390211e3e66970dbf92",
+        "partitions.csv": "149cd60851da506b2d99cf6a2a8f44cca0578a337a856545cce1bb06f3b5eb9f",
+        "readback.h": "861dab3b389163d2a25a97d3e5417d10c8f238ca2bda9a946e32b01860872442",
+        "recovery.ino": "2a911c85c0f643e992cebb516e83cce7523c385753448f0a5a3ae8223314b960",
+        "update_page.h": "7bc759b80a8e80c218b6b7249f101c0ddac188e85b0e83e98fba236a2c140045",
+        "update_state.h": "d33c4a928a2325b26a3b20981537a50d7d98b8f5f0aedebe74d0148ec098db2d"
+      }
+    },
+    "huzzah32/selftest": {
+      "board": "huzzah32",
+      "profile": "selftest",
+      "image_bytes": 926368,
+      "image_sha256": "861fe8562d998b48ab55421d560c25c9c2fcee1717485a5a55eccf2fed9ab10c",
+      "hardware_qualified": true,
+      "sources": {
+        "application_entry.h": "f0edfaf617047a36cb0f1664e4a69995c58b6b7d4b3a3d455aca348d201f7600",
+        "arduino_startup.h": "192517feb31b09fba27e7cc00dcf54cc21b1ffe4050e090c3ebc225641a315a5",
+        "authentication.h": "2b1266436bb667568e74fd7f3c1327f64b34e8ba2370fa699fa42c0128ad54ce",
+        "identity.h": "e43d8fd7ea627a78448dbf1a41ec7102e0fac08fad499390211e3e66970dbf92",
+        "partitions.csv": "149cd60851da506b2d99cf6a2a8f44cca0578a337a856545cce1bb06f3b5eb9f",
+        "selftest.ino": "2cadaa1ab2c9b4ae6c247115a2fd62ed179cd9590c3baa66680a4017beb11e68",
+        "update_page.h": "7bc759b80a8e80c218b6b7249f101c0ddac188e85b0e83e98fba236a2c140045",
+        "update_state.h": "d33c4a928a2325b26a3b20981537a50d7d98b8f5f0aedebe74d0148ec098db2d"
+      }
+    },
+    "xiao-c6/recovery": {
+      "board": "xiao-c6",
+      "profile": "recovery",
+      "image_bytes": 1015248,
+      "image_sha256": "852a1d27f506c2f18f57490f20b7e62d0023f079f90fe55c5b54276c082b29d9",
+      "hardware_qualified": false,
+      "sources": {
+        "arduino_startup.h": "192517feb31b09fba27e7cc00dcf54cc21b1ffe4050e090c3ebc225641a315a5",
+        "authentication.h": "2b1266436bb667568e74fd7f3c1327f64b34e8ba2370fa699fa42c0128ad54ce",
+        "boot_window.h": "5e560d26e437ef64d8bd03d256370b61846b01c92d77d6ee216f1305bbe28d1d",
+        "http_range.h": "c97450a24c490c12d54ac7b476b948328dfe164b604daa0dc900821791627e15",
+        "identity.h": "e43d8fd7ea627a78448dbf1a41ec7102e0fac08fad499390211e3e66970dbf92",
+        "partitions.csv": "149cd60851da506b2d99cf6a2a8f44cca0578a337a856545cce1bb06f3b5eb9f",
+        "readback.h": "861dab3b389163d2a25a97d3e5417d10c8f238ca2bda9a946e32b01860872442",
+        "recovery.ino": "2a911c85c0f643e992cebb516e83cce7523c385753448f0a5a3ae8223314b960",
+        "update_page.h": "7bc759b80a8e80c218b6b7249f101c0ddac188e85b0e83e98fba236a2c140045",
+        "update_state.h": "d33c4a928a2325b26a3b20981537a50d7d98b8f5f0aedebe74d0148ec098db2d"
+      }
+    }
+  },
+  "badboot": {
+    "returned_phase": 3,
+    "stable_phase": 3,
+    "indefinite_recovery": true,
+    "uart_reset_observed": true,
+    "test_image_sha256": "fc80897ca168aefe47cca5d75afbf389b456e43ceb24bfff8d84775f425848a3",
+    "fixture": "previously qualified 0.1.0-dev fault image",
+    "observation_seconds_after_return": 7
+  },
+  "badloop": {
+    "returned_phase": 4,
+    "stable_phase": 4,
+    "indefinite_recovery": true,
+    "uart_reset_observed": true,
+    "test_image_sha256": "a0b8b3d3c05048b7658da5e7071c2fdc4c5690c8b4dd5e2b48f5383faa861063",
+    "fixture": "previously qualified 0.1.0-dev fault image",
+    "observation_seconds_after_return": 7
+  },
+  "en_reset": {
+    "method": "CP2104 RTS/EN resets, not physical power removal",
+    "physical_double_power_cycle_verified": false,
+    "hardware_full_15_minute_soak": false,
+    "first_startup": {
+      "protocol": 1,
+      "role": "recovery",
+      "storage_ok": true,
+      "boot_window_ms": 7706,
+      "boot_window_mode": 1,
+      "phase": 4,
+      "committed": 926368,
+      "size": 926368,
+      "capacity": 2883584,
+      "downloading": false,
+      "result": "idle",
+      "netid": "huzzah32-test",
+      "image_sha256": "861fe8562d998b48ab55421d560c25c9c2fcee1717485a5a55eccf2fed9ab10c",
+      "source_retries": 0,
+      "firmware": {
+        "project": "arduino-lib-builder",
+        "version": "4c00f0f",
+        "idf": "v5.5.1-931-g9bb7aa84fe",
+        "build_date": "Dec 18 2025",
+        "build_time": "09:37:23",
+        "elf_sha256": "a52d227b6d0de4913ecf94d42822ceadff2a292280e318cfd8b16e067e677ba5"
+      },
+      "release": {
+        "name": "esp32-ota-selftest",
+        "version": "0.2.0-dev"
+      }
+    },
+    "emergency_entry": {
+      "protocol": 1,
+      "role": "recovery",
+      "storage_ok": true,
+      "boot_window_ms": 898523,
+      "boot_window_mode": 2,
+      "phase": 4,
+      "committed": 926368,
+      "size": 926368,
+      "capacity": 2883584,
+      "downloading": false,
+      "result": "idle",
+      "netid": "huzzah32-test",
+      "image_sha256": "861fe8562d998b48ab55421d560c25c9c2fcee1717485a5a55eccf2fed9ab10c",
+      "source_retries": 0,
+      "firmware": {
+        "project": "arduino-lib-builder",
+        "version": "4c00f0f",
+        "idf": "v5.5.1-931-g9bb7aa84fe",
+        "build_date": "Dec 18 2025",
+        "build_time": "09:37:23",
+        "elf_sha256": "a52d227b6d0de4913ecf94d42822ceadff2a292280e318cfd8b16e067e677ba5"
+      },
+      "release": {
+        "name": "esp32-ota-selftest",
+        "version": "0.2.0-dev"
+      }
+    },
+    "emergency_countdown": {
+      "protocol": 1,
+      "role": "recovery",
+      "storage_ok": true,
+      "boot_window_ms": 887328,
+      "boot_window_mode": 2,
+      "phase": 4,
+      "committed": 926368,
+      "size": 926368,
+      "capacity": 2883584,
+      "downloading": false,
+      "result": "idle",
+      "netid": "huzzah32-test",
+      "image_sha256": "861fe8562d998b48ab55421d560c25c9c2fcee1717485a5a55eccf2fed9ab10c",
+      "source_retries": 0,
+      "firmware": {
+        "project": "arduino-lib-builder",
+        "version": "4c00f0f",
+        "idf": "v5.5.1-931-g9bb7aa84fe",
+        "build_date": "Dec 18 2025",
+        "build_time": "09:37:23",
+        "elf_sha256": "a52d227b6d0de4913ecf94d42822ceadff2a292280e318cfd8b16e067e677ba5"
+      },
+      "release": {
+        "name": "esp32-ota-selftest",
+        "version": "0.2.0-dev"
+      }
+    },
+    "wrong_password_rejected": true,
+    "authenticated_hold_survives_reset": {
+      "protocol": 1,
+      "role": "recovery",
+      "storage_ok": true,
+      "boot_window_ms": 0,
+      "boot_window_mode": 0,
+      "phase": 5,
+      "committed": 926368,
+      "size": 926368,
+      "capacity": 2883584,
+      "downloading": false,
+      "result": "idle",
+      "netid": "huzzah32-test",
+      "image_sha256": "861fe8562d998b48ab55421d560c25c9c2fcee1717485a5a55eccf2fed9ab10c",
+      "source_retries": 0,
+      "firmware": {
+        "project": "arduino-lib-builder",
+        "version": "4c00f0f",
+        "idf": "v5.5.1-931-g9bb7aa84fe",
+        "build_date": "Dec 18 2025",
+        "build_time": "09:37:23",
+        "elf_sha256": "a52d227b6d0de4913ecf94d42822ceadff2a292280e318cfd8b16e067e677ba5"
+      },
+      "release": {
+        "name": "esp32-ota-selftest",
+        "version": "0.2.0-dev"
+      }
+    },
+    "normal_cold_start_auto_launch": true,
+    "software_entry_indefinite": {
+      "protocol": 1,
+      "role": "recovery",
+      "storage_ok": true,
+      "boot_window_ms": 0,
+      "boot_window_mode": 0,
+      "phase": 4,
+      "committed": 926368,
+      "size": 926368,
+      "capacity": 2883584,
+      "downloading": false,
+      "result": "idle",
+      "netid": "huzzah32-test",
+      "image_sha256": "861fe8562d998b48ab55421d560c25c9c2fcee1717485a5a55eccf2fed9ab10c",
+      "source_retries": 0,
+      "firmware": {
+        "project": "arduino-lib-builder",
+        "version": "4c00f0f",
+        "idf": "v5.5.1-931-g9bb7aa84fe",
+        "build_date": "Dec 18 2025",
+        "build_time": "09:37:23",
+        "elf_sha256": "a52d227b6d0de4913ecf94d42822ceadff2a292280e318cfd8b16e067e677ba5"
+      },
+      "release": {
+        "name": "esp32-ota-selftest",
+        "version": "0.2.0-dev"
+      }
+    },
+    "restored": {
+      "role": "main_selftest",
+      "no_actuators": true,
+      "boot_partition": "rescue",
+      "heap": 201172
+    }
+  },
+  "flash_readback": {
+    "recovery": {
+      "bytes": 955568,
+      "sha256": "7f8c8a43007bb2e07d22e7de8a37b035926cd49e7c5e63636db77a6fe1196a0b",
+      "exact_flash_readback": true
+    },
+    "main": {
+      "bytes": 926368,
+      "sha256": "861fe8562d998b48ab55421d560c25c9c2fcee1717485a5a55eccf2fed9ab10c",
+      "exact_flash_readback": true
+    }
+  },
+  "physical_power": {
+    "owner_confirmed_physical_double_power_cycle": true,
+    "observed_before_any_post_cycle_mutation": {
+      "protocol": 1,
+      "role": "recovery",
+      "storage_ok": true,
+      "boot_window_ms": 878704,
+      "boot_window_mode": 2,
+      "phase": 4,
+      "committed": 926368,
+      "size": 926368,
+      "capacity": 2883584,
+      "downloading": false,
+      "result": "idle",
+      "netid": "huzzah32-test",
+      "image_sha256": "861fe8562d998b48ab55421d560c25c9c2fcee1717485a5a55eccf2fed9ab10c",
+      "source_retries": 0,
+      "firmware": {
+        "project": "arduino-lib-builder",
+        "version": "4c00f0f",
+        "idf": "v5.5.1-931-g9bb7aa84fe",
+        "build_date": "Dec 18 2025",
+        "build_time": "09:37:23",
+        "elf_sha256": "a52d227b6d0de4913ecf94d42822ceadff2a292280e318cfd8b16e067e677ba5"
+      },
+      "release": {
+        "name": "esp32-ota-selftest",
+        "version": "0.2.0-dev"
+      }
+    },
+    "hardware_full_15_minute_soak": false,
+    "authenticated_maintenance": {
+      "protocol": 1,
+      "role": "recovery",
+      "storage_ok": true,
+      "boot_window_ms": 0,
+      "boot_window_mode": 0,
+      "phase": 5,
+      "committed": 926368,
+      "size": 926368,
+      "capacity": 2883584,
+      "downloading": false,
+      "result": "idle",
+      "netid": "huzzah32-test",
+      "image_sha256": "861fe8562d998b48ab55421d560c25c9c2fcee1717485a5a55eccf2fed9ab10c",
+      "source_retries": 0,
+      "firmware": {
+        "project": "arduino-lib-builder",
+        "version": "4c00f0f",
+        "idf": "v5.5.1-931-g9bb7aa84fe",
+        "build_date": "Dec 18 2025",
+        "build_time": "09:37:23",
+        "elf_sha256": "a52d227b6d0de4913ecf94d42822ceadff2a292280e318cfd8b16e067e677ba5"
+      },
+      "release": {
+        "name": "esp32-ota-selftest",
+        "version": "0.2.0-dev"
+      }
+    },
+    "restored_main": {
+      "role": "main_selftest",
+      "no_actuators": true,
+      "boot_partition": "rescue",
+      "heap": 201436
+    },
+    "installed_application_update_link": true
+  }
+}

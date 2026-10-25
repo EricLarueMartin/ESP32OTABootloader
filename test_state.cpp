@@ -1,3 +1,4 @@
+#include "recovery/boot_window.h"
 #include "recovery/update_state.h"
 #include <array>
 #include "recovery/identity.h"
@@ -173,6 +174,29 @@ int main() {
     r.committed = pos;
     r.crc = checksum(r);
     check(!valid(r, cap));
+  }
+  using namespace recovery_boot;
+  for (unsigned marker = 0; marker < 256; ++marker) {
+    check(choose(false, true, uint8_t(marker)) == Mode::Stay);
+    check(choose(true, false, uint8_t(marker)) == Mode::Stay);
+    check(choose(true, true, uint8_t(marker)) == (marker ? Mode::Maintenance : Mode::Gesture));
+  }
+  for (uint32_t start : {0u, 123u, 0xfffffff0u}) {
+    Window w;
+    w.begin(Mode::Gesture, start);
+    check(!w.expired(start + 9999));
+    check(w.expired(start + 10000));
+    w.begin(Mode::Maintenance, start);
+    check(!w.expired(start + MaintenanceMs + 1));
+    w.network(true, start + 20);
+    check(!w.expired(start + 20 + MaintenanceMs - 1));
+    check(w.expired(start + 20 + MaintenanceMs));
+    w.network(false, start + 30);
+    check(!w.expired(start + MaintenanceMs * 2));
+    w.network(true, start + MaintenanceMs * 2);
+    check(w.remaining(start + MaintenanceMs * 2) == MaintenanceMs);
+    w.cancel();
+    check(!w.expired(start + MaintenanceMs * 4));
   }
   std::printf("%u actual-source recovery journal and chunk checks passed\n", checks);
 }
